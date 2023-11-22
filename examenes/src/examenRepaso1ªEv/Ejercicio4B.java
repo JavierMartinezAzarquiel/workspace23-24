@@ -2,7 +2,7 @@ package examenRepaso1ªEv;
 
 import java.util.Scanner;
 
-public class Ejercicio4 {
+public class Ejercicio4B {
 
 	public static void main(String[] args) {
 		/*
@@ -18,22 +18,28 @@ public class Ejercicio4 {
 			entenderá que tiene las cifras ordenadas correctamente.
 		 */
 		Scanner teclado = new Scanner(System.in);
-		int numero;
+		int numero, anterior, cifra;
 		boolean ordenado = true; //flag para indicar si está ordenado o no
 		
 		System.out.print("Teclea un numero: ");
 		numero = teclado.nextInt();
 		
-		//solución usando un String
-		String texto = String.valueOf(numero); //convierto el número a texto
+		//solución usando matemáticas
+		anterior = numero % 10; //saco el último numero antes de comenzar el bucle
+		numero /= 10; //quito la cifra
 		
-		for (int i = 0; i <texto.length()-1 ; i++) {
-			if (texto.charAt(i) > texto.charAt(i+1)) {
-				ordenado = false;
+		while (numero>0) {
+			//saco otra cifra y la comparo con la anterior
+			cifra = numero % 10;
+			numero /= 10;
+			
+			if(cifra > anterior) { //si la cifra es mayor que la anterior
+				ordenado = false; //bajo la bandera
 			}
 			
+			anterior = cifra; //me preparo para la siguiente vuelta
 		}
-				
+		
 		if (ordenado) {
 			System.out.println("Las cifras están ordenadas");
 		} else {
