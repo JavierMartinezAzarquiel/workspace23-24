@@ -16,7 +16,7 @@ public class Notas2Dimensiones {
 		System.out.println("Tamaño de la fila 0: " + notas[0].length);
 		System.out.println("Tamaño de la fila 1: " + notas[1].length);
 		System.out.println("Tamaño de la fila 2: " + notas[2].length);
-//		System.out.println("Tamaño del hueco 0,3:" + notas[0][3]);
+//		System.out.println("Tamaño del hueco 0,3:" + notas[0][3].length);
 		
 		for (int i = 0; i < notas.length; i++) {
 			for (int j = 0; j < notas[i].length; j++) {
@@ -44,6 +44,70 @@ public class Notas2Dimensiones {
 		 */
 		
 		System.out.println("Media de cada evaluación");
+		int suma;
+		double media;
+		for (int i = 0; i < notas.length; i++) {
+			suma = 0;
+			for (int j = 0; j < notas[i].length; j++) {
+				suma += notas[i][j];
+			}
+			media = (double)suma / notas[i].length;
+			System.out.println("\tMedia " + (i+1) + "ªEv: " + media);
+		}
+		
+		/*
+		 * Media de cada módulo
+		 * 		Módulo 1: 7.0
+		 * 		Módulo 2: 6.8
+		 * 		....
+		 * 		Modulo 7: 8.3
+		 */
+		
+		System.out.println("Media de cada módulo");
+		for (int j = 0; j < notas[0].length; j++) {
+			suma = 0;
+			for (int i = 0; i < notas.length; i++) {
+				suma += notas[i][j];
+			}
+			media = (double)suma / notas.length;
+			System.out.println("\tMódulo " + (j+1) + ": " + media);
+		}
+		
+		/*
+		 * Aprobados por evaluación
+		 * 		1ªEv: 6
+		 * 		2ªEv: 5
+		 * 		3ªEv: 6
+		 */
+		System.out.println("Aprobados por evaluación");
+		for (int i = 0; i < notas.length; i++) {
+			aprobados = 0;
+			for (int j = 0; j < notas[i].length; j++) {
+				if (notas[i][j] >= 5) {
+					aprobados++;
+				}
+			}
+			System.out.println("\t" + (i+1) + "ªEv: " + aprobados);
+		}
+		
+		/*
+		 * Aprobados en cada módulo
+		 * 		Módulo 1: 3
+		 * 		Módulo 2: 1
+		 * 		Módulo 3: 0
+		 * 		...
+		 * 		Módulo 7: 3
+		 */
+		System.out.println("Aprobados en cada módulo");
+		for (int j = 0; j < notas[0].length; j++){
+			aprobados = 0;
+			for (int i = 0; i < notas.length; i++)  {
+				if (notas[i][j] >= 5) {
+					aprobados++;
+				}
+			}
+			System.out.println("\tMódulo " + (j+1) + ": " + aprobados);
+		}
 		
 	}
 
