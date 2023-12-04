@@ -17,10 +17,19 @@ public class Notas2DimensionesConNombres {
 		 * 3ªEv: Leng.Marcas Inglés BBDD FOL Sistemas Entornos
 		 * 
 		 */
-		
+		System.out.println("Listado de módulos aprobados en cada Evaluación");
+		for (int i = 0; i < notas.length; i++) {
+			System.out.print(evaluaciones[i] + ":");
+			for (int j = 0; j < notas[i].length; j++) {
+				if (notas[i][j] >= 5) {
+					System.out.print(modulos[j] +" ");
+				}
+			}
+			System.out.println();
+		}
 		
 		/*
-		 * Média de cada módulo
+		 * Media de cada módulo
 		 * 
 		 * Leng.Marcas: 8.0
 		 * Inglés: 7.3
@@ -29,7 +38,16 @@ public class Notas2DimensionesConNombres {
 		 * Entornos: 9.4
 		 * 
 		 */
-	
+		System.out.println("\nMedia de cada módulo");
+		for (int j = 0; j < notas[0].length; j++){
+			System.out.print(modulos[j] + ": ");
+			int suma = 0;
+			for (int i = 0; i < notas.length; i++) {
+				suma += notas[i][j];
+			}
+			double media = (double)suma / notas.length;
+			System.out.println(media);
+		}
 	
 		/*
 		 * Módulo con mejor media
@@ -37,6 +55,24 @@ public class Notas2DimensionesConNombres {
 		 * Entornos: 9.4
 		 * 
 		 */
+		System.out.println("\nMódulo con mejor media");
+		int moduloMejorMedia = 0;
+		double mejorMedia = 0;
+		for (int j = 0; j < notas[0].length; j++){
+			
+			int suma = 0;
+			for (int i = 0; i < notas.length; i++) {
+				suma += notas[i][j];
+			}
+			double media = (double)suma / notas.length;
+			if( media > mejorMedia) {
+				mejorMedia = media;
+				moduloMejorMedia = j;
+			}
+		}
+		System.out.println(modulos[moduloMejorMedia] + ": " + mejorMedia);
+	
+		
 	
 		/*
 		 * Resultado Final (Si hay alguna evaluación suspensa, queda Pendiente)
@@ -49,6 +85,21 @@ public class Notas2DimensionesConNombres {
 		 * Entornos: Aprobado
 		 */
 	
+		System.out.println("\nResultado Final");
+		for (int j = 0; j < notas[0].length; j++){
+			boolean flag = true;
+			for (int i = 0; i < notas.length; i++) {
+				if(notas[i][j] < 5) {
+					flag = false;
+				}
+			}
+			System.out.print(modulos[j] +": ");
+			if (flag) {
+				System.out.println("Aprobado");
+			}else {
+				System.out.println("Pendiente");
+			}
+		}
 	}
 
 }
