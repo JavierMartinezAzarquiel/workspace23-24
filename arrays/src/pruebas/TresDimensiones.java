@@ -16,8 +16,8 @@ public class TresDimensiones {
 		
 		int[][][] datos = { { {20,22}, {19,21}, {20,18}, {22,23} },
 				            { {23,21}, {18,22}, {19,19}, {20,19} },
-				            { {16,19}, {18,20}, {22,14}, {21,16} },
-				            { {18,20}, {22,21}, {21,22}, {19,20} },
+				            { {16,19}, {18,20}, {22,24}, {21,16} },
+				            { {18,10}, {22,21}, {21,22}, {19,20} },
 				            { {20,20}, {19,20}, {20,19}, {17,20} } };
 		
 		String[] grados = {"Derecho", "Informática", "Magisterio", "Física", "ADE"};
@@ -129,8 +129,18 @@ public class TresDimensiones {
 		 * Tercero de Magisterio
 		 * 
 		 */
-		
-		
+		System.out.println("Clase con mas diferencia entre Mujeres y Hombres");
+		int iMaxDiferencia = 0, jMaxDiferencia = 0, maxDiferencia = 0; 
+		for (int i = 0; i < datos.length; i++) {
+			for (int j = 0; j < datos[i].length; j++) {
+				if (Math.abs( datos[i][j][0] - datos[i][j][1] ) > maxDiferencia ){
+					maxDiferencia = Math.abs( datos[i][j][0] - datos[i][j][1] );
+					iMaxDiferencia = i;
+					jMaxDiferencia = j;
+				}
+			}
+		}
+		System.out.println(cursos[jMaxDiferencia] + " de " + grados[iMaxDiferencia]);
 	}
 
 }
