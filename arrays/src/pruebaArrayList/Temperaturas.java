@@ -19,9 +19,34 @@ public class Temperaturas {
 		System.out.println("Temperatura media: " + media);
 		
 		//temperatura máxima
+		double maximo = Double.MIN_VALUE;
+		for (Double valor : temperaturas) {
+			if(valor > maximo) {
+				maximo = valor;
+			}
+		}
+		System.out.println("La temperatura máxima fué: " + maximo);
 		
 		//¿Que dia fué el mas caluroso?
+		int diaMaximo = 0; //El mas caluroso de momento es el lunes
+		for (int i = 1; i < temperaturas.size(); i++) {
+			if(temperaturas.get(i) > temperaturas.get(diaMaximo) ) {
+				diaMaximo = i;
+			}
+		}
+		ArrayList<String> dias = new ArrayList<String>(Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"));
+		System.out.println("El dia mas caluroso fué el: " + dias.get(diaMaximo));
+		
 		
 	}
 
+	
+	
 }
+
+
+
+
+
+
+
