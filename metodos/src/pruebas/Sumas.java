@@ -4,7 +4,8 @@ public class Sumas {
 
 	public static void main(String[] args) {
 		
-		System.out.println( suma(4,7.46) );
+		System.out.println( suma(4, 7.46, 8, 4, 3, 9.34, 8) );
+	
 	}
 
 	
@@ -26,4 +27,18 @@ public class Sumas {
 		resultado = num1 + num2 + num3;
 		return resultado;
 	}
+	
+	public static double suma(double... numeros) {
+		double resultado = 0;
+		for (double d : numeros) {
+			resultado += d;
+		}
+		return resultado;
+	}
+	
 }
+
+
+
+
+
