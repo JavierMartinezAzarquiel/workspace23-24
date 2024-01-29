@@ -16,6 +16,18 @@ public class Prueba {
 		Agenda agenda = new Agenda();
 		
 		agenda.add( javier );
+		agenda.add(new Contacto("Laura",665748733));
+		agenda.add(new Contacto("Carlos",748475985));
+		
+		System.out.println(agenda);
+		
+		agenda.delete("Carlos");
+		
+		System.out.println(agenda);
+		
+		agenda.update("Laura", "Laurita");
+
+		System.out.println(agenda);
 		
 	}
 
