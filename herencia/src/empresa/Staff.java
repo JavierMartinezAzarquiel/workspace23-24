@@ -1,6 +1,6 @@
 package empresa;
 
-public class Staff extends Persona{
+public abstract class Staff extends Persona{
 
 	protected float sueldo;
 

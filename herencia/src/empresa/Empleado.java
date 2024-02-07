@@ -6,5 +6,10 @@ public class Empleado extends Staff{
 		super(dni, nombre, telefono, sueldo);
 	}
 
+	@Override
+	public String toString() {
+		return "Empleado [dni=" + dni + ", nombre=" + nombre + ", telefono=" + telefono + ", sueldo=" + sueldo + "]";
+	}
+
 	
 }
