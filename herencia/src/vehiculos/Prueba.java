@@ -38,8 +38,10 @@ public class Prueba {
 	public static int cuantosDeGasolina(ArrayList<Vehiculo> lista) {
 		int contador = 0;
 		for (Vehiculo vehiculo : lista) {
-			if(vehiculo.getCombustible().equals("Gasolina")) {
-				contador++;
+			if ( vehiculo instanceof VehiculoConMotor) {//si es un vehiculo con motor le pregunto si usa gasolina
+				if( ((VehiculoConMotor)vehiculo).getCombustible().equals("Gasolina")) {
+					contador++;
+				}
 			}
 		}
 		return contador;
