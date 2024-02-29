@@ -18,11 +18,17 @@ public class PruebaExcepcionesChecked {
 		
 		try {
 			a = Integer.parseInt(teclado.readLine());
-		} catch (NumberFormatException e) {
-			System.out.println("El formato del número no es correcto");
-		} catch (IOException e) {
+		} catch (NumberFormatException | IOException e) {
 			System.out.println("Error en el teclado");
 		}
+		
+//		try {
+//			a = Integer.parseInt(teclado.readLine());
+//		} catch (NumberFormatException e) {
+//			System.out.println("El formato del número no es correcto");
+//		} catch (IOException e) {
+//			System.out.println("Error en el teclado");
+//		}
 		
 		System.out.println("El valor tecleado es: " + a);
 
