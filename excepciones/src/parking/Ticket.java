@@ -52,7 +52,23 @@ public class Ticket {
 			throw new TicketException("La hora del ticket no es correcta");
 		}
 		
+		long dias = duracion.toDays();
+		long horas = duracion.toHoursPart(); //horas que restan
+		long minutos = duracion.toMinutesPart(); //minutos que restan
 		
+		//si alguien está mas de 10 horas, le ponemos un dia completo, que le sale mas barato.
+		if(horas >=10) {
+			dias++;
+			horas = 0;
+			minutos = 0;
+		}
+		
+		return dias*PRECIO_DIA + horas*PRECIO_HORA + minutos*PRECIO_MINUTO;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket [matricula=" + matricula + ", horaEntrada=" + horaEntrada + ", pagado=" + pagado + "]";
 	}
 	
 }
