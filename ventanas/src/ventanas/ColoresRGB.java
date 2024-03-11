@@ -37,7 +37,7 @@ public class ColoresRGB extends JFrame {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					ColoresRGB frame = new ColoresRGB();
-					frame.setLocationRelativeTo(null);
+					frame.setLocationRelativeTo(null);//centre la ventana
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -145,7 +145,7 @@ public class ColoresRGB extends JFrame {
 		});
 	}
 	
-	private void actualizar() { //m�todo que actualiza los valores y el color del panel
+	private void actualizar() { //método que actualiza los valores y el color del panel
 		//coger los valores de los tres colores
 		int rojo = sliderRojo.getValue();
 		int verde = sliderVerde.getValue();
