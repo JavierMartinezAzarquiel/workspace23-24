@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Factura2 extends JFrame {
 
@@ -28,6 +30,7 @@ public class Factura2 extends JFrame {
 	private JTextField textFieldCantidad;
 	private JTextField textFieldIVA;
 	private JTextField textFieldTotal;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -108,23 +111,19 @@ public class Factura2 extends JFrame {
 		textFieldTotal.setColumns(10);
 		textFieldTotal.setBounds(125, 175, 122, 22);
 		contentPane.add(textFieldTotal);
-
-		JButton btnNewButton = new JButton("Calcular");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		comboBox = new JComboBox();
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
 				actualizar();
 			}
 		});
-		btnNewButton.setBounds(198, 227, 89, 23);
-		contentPane.add(btnNewButton);
-		
-		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"21", "10", "4"}));
-		comboBox.setBounds(142, 91, 105, 22);
+		comboBox.setBounds(142, 80, 105, 22);
 		contentPane.add(comboBox);
 		
 		JLabel lblTipoDeIva = new JLabel("Tipo de IVA:");
-		lblTipoDeIva.setBounds(50, 89, 63, 23);
+		lblTipoDeIva.setBounds(50, 78, 63, 23);
 		contentPane.add(lblTipoDeIva);
 	}
 
@@ -132,13 +131,9 @@ public class Factura2 extends JFrame {
 	private void actualizar() {
 			//obtener que iva debo aplicar
 			int iva;
-			if(rdbtn21.isSelected()) {
-				iva = 21;
-			}else if(rdbtn10.isSelected()) {
-				iva = 10;
-			}else {
-				iva = 4;
-			}
+			//hablar con el comboBox para preguntar que está seleccionado
+			String textoSeleccionado = (String)comboBox.getSelectedItem();
+			iva = Integer.parseInt(textoSeleccionado);
 			try {
 				//obtener la cantidad
 				double cantidad = Double.parseDouble(textFieldCantidad.getText());
