@@ -57,6 +57,11 @@ public class VentanaPrincipalAgenda extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnAnadirContacto = new JButton("Añadir contacto");
+		btnAnadirContacto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				añadirContacto();
+			}
+		});
 		btnAnadirContacto.setBounds(86, 195, 123, 23);
 		contentPane.add(btnAnadirContacto);
 		
@@ -158,6 +163,20 @@ public class VentanaPrincipalAgenda extends JFrame {
 		}
 		
 	}
+	
+	private void añadirContacto() {
+		DialogoNuevoContacto dialogo = new DialogoNuevoContacto(this, true);
+		dialogo.setLocationRelativeTo(this);
+		dialogo.setVisible(true);
+		//Cuando el dialogo termine, actualizamos la tabla
+		cargarTabla();
+	}
+
+	public Agenda getAgenda() {  //método para que me puedan pedir la agenda
+		return agenda;
+	}
+	
+	
 	
 }
 
