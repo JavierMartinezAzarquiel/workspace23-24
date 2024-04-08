@@ -1,31 +1,37 @@
 package pruebasConObjetos;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class GuardarUnContacto {
+public class RecuperarUnContacto {
 
 	public static void main(String[] args) {
-		Contacto c = new Contacto("Javier", 665746433);
-		
 		File archivo = new File("contacto.obj");
 		
 		
-		ObjectOutputStream stream = null;
+		ObjectInputStream stream = null;
+
 		
 		try {
-			stream = new ObjectOutputStream(new FileOutputStream(archivo));
+			stream = new ObjectInputStream(new FileInputStream(archivo));
 			
-			stream.writeObject(c);
+			//recuperar el objeto
+			Contacto c = (Contacto) stream.readObject();
+			
+			System.out.println("Hola soy " + c.getNombre());
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("Archivo no encontrado");
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("Error de escritura");
+			System.out.println("Error de lectura");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error: El archivo no contiene objetos Contacto");
 		} finally {
 			try {
 				if(stream != null) {
@@ -35,7 +41,6 @@ public class GuardarUnContacto {
 				System.out.println("Error cerrando el stream");
 			}
 		}
-
 	}
 
 }
