@@ -1,0 +1,4 @@
+1/5/2024:Juan,Pedro,Daniel,Carlos
+2/5/2024:Pedro,Carlos,Luis,Daniel
+3/5/2024:Carlos,Pedro
+4/5/2024:Juan,Luis,Pedro
