@@ -1,0 +1,5 @@
+Juan:2
+Pedro:4
+Daniel:2
+Carlos:3
+Luis:2
