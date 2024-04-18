@@ -1,0 +1,4 @@
+D1:Portero
+D2:Defensa
+D3:Centrocampista
+D4:Delantero

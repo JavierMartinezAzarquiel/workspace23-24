@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 
 import ejercicios.ejercicio2.Planta;
@@ -33,8 +34,8 @@ public class Ejercicio4 {
 	public static void actualizarPrecios(ArrayList<Vehiculo> listaVehiculos) {
 		//para cada vehículo, compruebo si ha estado mas de 5 dias
 		for (Vehiculo vehiculo : listaVehiculos) {
-			Duration duracion = Duration.between(vehiculo.getEntradaEnExposicion(), LocalDate.now());
-			if(duracion.toDays() > 5) {
+			Period duracion = Period.between(vehiculo.getEntradaEnExposicion(), LocalDate.now());
+			if(duracion.getDays() > 5) {
 				vehiculo.setPrecio( vehiculo.getPrecio() * 0.85F);
 			}
 		}
