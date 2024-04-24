@@ -81,17 +81,17 @@ public class VentanaBuscar extends JFrame {
 		campoFiltro = new JTextField();
 		campoFiltro.setBounds(36, 69, 191, 20);
 		//Evento para que haga la busqueda al tiempo que tecleamos
-		campoFiltro.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				pulsadoFiltrar();
-			}
-			public void removeUpdate(DocumentEvent e) {
-				pulsadoFiltrar();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				pulsadoFiltrar();
-			}
-		});
+//		campoFiltro.getDocument().addDocumentListener(new DocumentListener() {
+//			public void changedUpdate(DocumentEvent e) {
+//				pulsadoFiltrar();
+//			}
+//			public void removeUpdate(DocumentEvent e) {
+//				pulsadoFiltrar();
+//			}
+//			public void insertUpdate(DocumentEvent e) {
+//				pulsadoFiltrar();
+//			}
+//		});
 		
 		panel.add(campoFiltro);
 		campoFiltro.setColumns(10);
