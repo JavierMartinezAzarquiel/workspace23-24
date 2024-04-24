@@ -82,10 +82,20 @@ public class BlocDeNotas extends JFrame {
 		mnNewMenu.add(mntmNewMenuItemAbrir);
 		
 		JMenuItem mntmNewMenuItemGuardar = new JMenuItem("Guardar");
+		mntmNewMenuItemGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pulsadoGuardar();
+			}
+		});
 		mntmNewMenuItemGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
 		mnNewMenu.add(mntmNewMenuItemGuardar);
 		
 		JMenuItem mntmNewMenuItemGuardarComo = new JMenuItem("Guardar como");
+		mntmNewMenuItemGuardarComo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pulsadoGuardarComo();
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItemGuardarComo);
 		
 		JMenu mnNewMenu_1 = new JMenu("Ayuda");
@@ -109,7 +119,34 @@ public class BlocDeNotas extends JFrame {
 			for (String string : texto) {
 				textArea.append(string + "\n");
 			}
-			
+			//poner el nombre del archivo en el titulo de la ventana
+			this.setTitle(gestor.getArchivo().getName() + " : bloc de notas");
+		}
+	}
+	
+	private void pulsadoGuardarComo(){
+		//mostrar un diálogo para elegir el archivo donde guardar
+		JFileChooser dialogo = new JFileChooser(gestor.getArchivo());
+		dialogo.showSaveDialog(this);
+		//Ahora habra que preguntar si han seleccionado algo
+		if (dialogo.getSelectedFile() != null) {
+			//le paso el archivo al gestor
+			this.gestor.setArchivo( dialogo.getSelectedFile() );
+			//pasamos al gestor el texto que debe almacenar
+			gestor.setTexto( textArea.getText() );
+			//poner el nombre del archivo en el titulo de la ventana
+			this.setTitle(gestor.getArchivo().getName() + " : bloc de notas");
+		}
+		
+	}
+	
+	private void pulsadoGuardar() {
+		//Preguntamos si tenemos un archivo elegido
+		if (gestor.getArchivo() == null) { //si no hemos elegido todavía un archivo
+			this.pulsadoGuardarComo();
+		} else {
+			//ya tenemos un archivo seleccionado, guardamos directamente
+			gestor.setTexto( textArea.getText() );
 		}
 	}
 
