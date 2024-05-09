@@ -17,7 +17,7 @@ public class DBConnection {
 			//Primero preparamos la url de conexión
 			String url = "jdbc:mysql://localhost/agenda";
 			//Creo el objeto conexión::: Ponemos la url, el usuario , la contraseña
-			Connection conexion = DriverManager.getConnection(url, "root", "");
+			conexion = DriverManager.getConnection(url, "root", "");
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error cargando el Driver");
