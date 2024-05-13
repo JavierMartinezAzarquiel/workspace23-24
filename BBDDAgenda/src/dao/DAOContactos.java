@@ -87,6 +87,29 @@ public class DAOContactos {
 	}
 	
 	//método para eliminar un objeto en la tabla
+	public void delete(Contacto c) {
+		//obtener una conexion a la BBDD
+		Connection conexion = new DBConnection().getConexion();
+		
+		try {
+			//Usando un PreparedStatement
+			String sql = "DELETE FROM contactos WHERE nombre=?";
+			//Creo el Statement
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			//ahora tengo que decirle que dato va en cada interrogación
+			sentencia.setString(1, c.getNombre());
+						
+			//ejecuto
+			sentencia.executeUpdate();
+			
+			//cerrar conexion
+			conexion.close();
+		} catch (SQLException e) {
+			System.out.println("Error borrando contacto");
+			e.printStackTrace();
+		}
+		
+	}
 	
 	//método para obtener todos los objetos de la tabla
 	public ArrayList<Contacto> get(){
@@ -122,4 +145,35 @@ public class DAOContactos {
 	
 	//método para obtener un objeto concreto dado su nombre
 	
+	public Contacto get(String nombre){
+		
+		//Variable contacto
+		Contacto c = null;
+		//obtener una conexion a la BBDD
+		Connection conexion = new DBConnection().getConexion();
+		
+		try {
+			//Usando un PreparedStatement
+			String sql = "SELECT * FROM contactos WHERE nombre=?";
+			//Creo el Statement
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setString(1, nombre);
+			//ejecuto
+			ResultSet resultado = sentencia.executeQuery();
+			
+			if (resultado.next()) {
+			    c = new Contacto( resultado.getString(1), resultado.getLong(2));
+			}
+			
+			//cerrar conexion
+			conexion.close();
+		} catch (SQLException e) {
+			System.out.println("Error buscando contacto");
+			e.printStackTrace();
+		}
+		return c;
+	}
+	
 }
+
+
