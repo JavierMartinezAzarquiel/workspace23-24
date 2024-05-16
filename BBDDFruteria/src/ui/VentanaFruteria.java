@@ -9,9 +9,12 @@ import javax.swing.border.EmptyBorder;
 
 import dao.DAOGrupos;
 import dao.DAOProductos;
+import entidades.Grupo;
 import entidades.Producto;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaFruteria extends JFrame {
 
@@ -43,6 +48,7 @@ public class VentanaFruteria extends JFrame {
 	private JTextField textFieldIdProducto;
 	private JTextField textFieldNombre;
 	private JTextField textFieldPrecio;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -142,11 +148,16 @@ public class VentanaFruteria extends JFrame {
 		contentPane.add(textFieldPrecio);
 		textFieldPrecio.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(136, 350, 122, 22);
 		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Modificar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pulsadoModificar();
+			}
+		});
 		btnNewButton.setBounds(301, 337, 89, 23);
 		contentPane.add(btnNewButton);
 		//antes de terminar el constructor de la ventana, cargamos los datos en la tabla
@@ -196,8 +207,37 @@ public class VentanaFruteria extends JFrame {
 		Producto p = daop.get( (Integer) table.getValueAt(table.getSelectedRow(),0)  );
 		
 		//rellenar los datos en cada campo
+		textFieldIdProducto.setText( String.valueOf(p.getIdProducto()) );
+		textFieldNombre.setText(p.getNomProducto());
+		textFieldPrecio.setText( String.valueOf(p.getPrecio()) );
+		//seleccionar en el comboBox, el grupo adecuado
+		cargarComboBox();
+//		comboBox.setSelectedItem( table.getValueAt(table.getSelectedRow(),2) );
+		comboBox.setSelectedItem( daog.get(p.getIdGrupo()).getNomGrupo());
 	}
 	
+	private void cargarComboBox() {
+		//obtener todos los grupos
+		ArrayList<Grupo> listaGrupos = daog.get();
+		//limpiar el comboBox
+		comboBox.removeAllItems();
+		for (Grupo grupo : listaGrupos) {
+			comboBox.addItem( grupo.getNomGrupo());
+		}
+	}
+	
+	private void pulsadoModificar() {
+		try {
+			Producto p = new Producto(Integer.parseInt(textFieldIdProducto.getText())
+					                  ,textFieldNombre.getText()
+					                  , daog.get((String)comboBox.getSelectedItem()).getIdGrupo()
+					                  , Double.parseDouble(textFieldPrecio.getText()));
+			daop.update(p);
+			cargarTabla();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "Revisa el precio","Error",JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }
 
 

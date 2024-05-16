@@ -64,5 +64,31 @@ public class DAOGrupos{
 
     }
 
-   
+    public Grupo get(String nombreDeGrupo){
+        Grupo g=null;
+
+        try{
+         Connection conexion=new DBConnection().getConexion();
+         
+         String sql="SELECT * FROM Grupos WHERE NombreGrupo=?";
+         PreparedStatement sentencia = conexion.prepareStatement(sql);
+         sentencia.setString(1, nombreDeGrupo);
+         sentencia.execute();
+         ResultSet resultado=sentencia.getResultSet();
+
+
+         if(resultado.next()){
+           g=new Grupo(resultado.getInt("IdGrupo"),resultado.getString("NombreGrupo"));
+           
+         }
+
+         sentencia.close();
+         conexion.close();
+        }catch(SQLException e){
+         System.out.print("Error consultando grupo");
+        }
+
+        return g;
+
+    }
 }
